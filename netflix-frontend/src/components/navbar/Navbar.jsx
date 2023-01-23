@@ -1,7 +1,9 @@
 import "./navbar.scss"
 import React from 'react'
-import SearchIcon from '@mui/icons-material/Search';
-
+import SearchIcon from "@mui/icons-material/Search";
+import { IconButton } from "@mui/material";
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 const Navbar = () => {
   return (
     <div className="navbar">
@@ -15,10 +17,23 @@ const Navbar = () => {
           <span>My List</span>
         </div>
         <div className="right">
-          <Icon>
-          <SearchIcon/>
-
-          </Icon>
+          <IconButton>
+            <SearchIcon/>
+          </IconButton> 
+          <span>KID</span>
+          <IconButton>
+            <NotificationsIcon/>
+          </IconButton> 
+          <img src="https://i.imgur.com/eBs9rma.jpg" alt="" />
+          <div className="profile">
+          <IconButton>
+            <ArrowDropDownIcon/>
+            <div className="options">
+              <span>Settings</span>
+              <span>Logout</span>
+            </div>
+          </IconButton>
+          </div> 
         </div>
       </div>
     </div>
