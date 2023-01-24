@@ -42,14 +42,25 @@
   
         .icons {
           display: flex;
+          margin-left: 10px;
+          // margin-right: 60px;
           margin-bottom: 10px;
+          height: 45px;
+          gap: 20px;
   
-          .MuiSvgIcon-root {
-            border: 2px solid white;
-            padding: 5px;
+          // .MuiSvgIcon-root {
+          //   border: 2px solid white;
+          //   padding: 5px;
+          //   border-radius: 50%;
+          //   margin-right: 10px;
+          //   font-size: 16px;
+          // }
+          .MuiSvgIcon-root{
+            color: white;
             border-radius: 50%;
-            margin-right: 10px;
-            font-size: 16px;
+            border: 2px solid white;
+            height:25px;
+            width: 25px;
           }
         }
         .itemInfoTop {
