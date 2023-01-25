@@ -4,7 +4,26 @@ const router = express.Router();
 const CryptoJs = require("crypto-js");
 const jwt = require("jsonwebtoken");
 
-router.post("/register", (req, res) => {
+//REGISTER
+// router.post("/register", (req, res) => {
+// 	const newUser = new User({
+// 		username: req.body.username,
+// 		email: req.body.email,
+// 		password: CryptoJs.AES.encrypt(
+// 			req.body.password,
+// 			process.env.secretKey
+// 		).toString(),
+// 	})
+// 		.save()
+// 		.then((data) => {
+// 			res.status(200).json({ message: "user registered", data });
+// 		})
+// 		.catch((error) => {
+// 			res.json({ message: "error registering" });
+// 		});
+// });
+
+router.post("/register", async (req, res) => {
 	const newUser = new User({
 		username: req.body.username,
 		email: req.body.email,
@@ -12,14 +31,13 @@ router.post("/register", (req, res) => {
 			req.body.password,
 			process.env.secretKey
 		).toString(),
-	})
-		.save()
-		.then((data) => {
-			res.status(200).json({ message: "user registered", data });
-		})
-		.catch((error) => {
-			res.json({ message: "error registering" });
-		});
+	});
+	try {
+		const user = await newUser.save();
+		res.status(201).json(user);
+	} catch (err) {
+		res.status(500).json(err);
+	}
 });
 
 //LOGIN
@@ -37,7 +55,7 @@ router.post("/login", async (req, res) => {
 		const accessToken = jwt.sign(
 			{ id: user._id, isAdmin: user.isAdmin },
 			process.env.secretKey,
-			{ expiresIn: "30d" }
+			{ expiresIn: "6d" }
 		);
 		const { password, ...info } = user._doc;
 
