@@ -1,15 +1,21 @@
 import React from 'react'
 import "./watch.scss"
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Watch = () => {
+  const location = useLocation()
+  const movie = location.movie;
   return (
     <div className='watch'>
+      <Link to="/">
         <div className="back">
             Home
             <ArrowBackIcon/>
         </div>
-        <video className='video' autoPlay progress controls src="https://www.veed.io/view/8d52e88b-a36a-4b1c-80f9-e7891be623c2?panel=share"></video>
+        </Link>
+        <video className='video' autoPlay progress controls src={movie.video}></video>
     </div>
   )
 }

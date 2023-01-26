@@ -1,23 +1,42 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import "./listItem.scss"
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import { IconButton } from '@mui/material';
-const ListItem = ({index}) => {
-  const [isHovered, setIsHovered]=useState(false)
-  const trailer = "https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c0fd273d2c6d9a064f3ae35579b2bbdf&profile_id=139&oauth2_token_id=57447761"
+import axios from 'axios';
+import {Link} from "react-router-dom"
 
+const ListItem = ({index,item}) => {
+  const [isHovered, setIsHovered]=useState(false);
+  const[movie, setMovie]= useState({})
+  useEffect(() => {
+    const getMovie = async()=>{
+      try{
+        const res= await axios.get("/movie/find/"+item,{
+          headers: {
+            token:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDAzNDFmYmQ4MmNmODg0NDI2MjVmOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY3NDc0NjE0NywiZXhwIjoxNjc1MjY0NTQ3fQ.3h23sMTmJajHHay2od1ylXfpQZjXfldCASkxp33odKw",
+          },
+        })
+        setMovie(res.data)
+      }catch(err){
+        console.log(err);
+      }
+    }
+    getMovie()
+  }, [item]);
  
   return (
+    <Link to={{ pathname: "/watch", movie: movie }}>
     <div className='listItem'
     style={{left:isHovered && index* 225 -50 + index *2.5}} onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}>
 
-      <img src="https://i.imgur.com/rGPmAJc.jpg" alt="" />
+      <img src={movie.img} alt="" />
       {isHovered && (
       <>
-      <video src={trailer} autoPlay={true} loop></video>
+      <video src={movie.trailer} autoPlay={true} loop></video>
       <div className="itemInfo">
         <div className='icons'>
         <IconButton>
@@ -34,20 +53,21 @@ const ListItem = ({index}) => {
         </IconButton>    
         </div>
         <div className="itemInfoTop">
-          <span>51:23 mins </span>
-          <span className='limit'> U/A +16 </span>
-          <span> 2017 </span>
+          <span>{movie.duration} </span>
+          <span className='limit'> +U/A{movie.limit} </span>
+          <span> {movie.year} </span>
         </div>
         <div className="description">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+          {movie.desc}
         </div>
-        <div className="genre">Thriller/Sci-fi</div>
+        <div className="genre">{movie.genre}</div>
       </div> 
       </>
-
+      
       )}
 
     </div>
+    </Link>
   )
 }
 
