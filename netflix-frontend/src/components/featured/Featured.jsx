@@ -1,10 +1,29 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
 import "./featured.scss"
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { IconButton } from '@mui/material';
-
+import axios from 'axios';
 const Featured = ({type}) => {
+    const [content, setContent]= useState({})
+    useEffect(()=>{
+        const getRandomContent= async()=>{
+            try{
+                const res= await axios.get(`/movies/random?type=${type}`,{
+                    headers: {
+                      token:
+                      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDAzNDFmYmQ4MmNmODg0NDI2MjVmOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY3NDc0NjE0NywiZXhwIjoxNjc1MjY0NTQ3fQ.3h23sMTmJajHHay2od1ylXfpQZjXfldCASkxp33odKw",
+                    },
+                  })
+                setContent(res.data[0])
+            }
+            catch(error){
+                console.log(error);
+            }
+            console.log(content)
+        }
+        getRandomContent()
+    },[type])
   return (
     <div className='featured'>
         {type && (
@@ -28,10 +47,10 @@ const Featured = ({type}) => {
                 </select>
             </div>
         )}
-        <img src="https://i.imgur.com/dX30jyv.jpg" alt="" />
+        <img src={content.img} alt="" />
         <div className="info">
-            <img src="https://i.imgur.com/m6MD35x.png" alt="" />
-            <span className="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae debitis voluptate asperiores voluptatibus incidunt et unde. Voluptate inventore ut, obcaecati harum sapiente libero hic voluptatem veritatis illo rem, maiores repellat.</span>
+            <img src={content.imgTitle} alt="" />
+            <span className="description">{content.desc}</span>
             <div className="buttons">
                 <button className="play">
                     <IconButton>

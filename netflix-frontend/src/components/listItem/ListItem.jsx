@@ -14,7 +14,7 @@ const ListItem = ({index,item}) => {
   useEffect(() => {
     const getMovie = async()=>{
       try{
-        const res= await axios.get("/movie/find/"+item,{
+        const res= await axios.get("/movies/find/"+item,{
           headers: {
             token:
             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDAzNDFmYmQ4MmNmODg0NDI2MjVmOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY3NDc0NjE0NywiZXhwIjoxNjc1MjY0NTQ3fQ.3h23sMTmJajHHay2od1ylXfpQZjXfldCASkxp33odKw",
@@ -29,7 +29,7 @@ const ListItem = ({index,item}) => {
   }, [item]);
  
   return (
-    <Link to={{ pathname: "/watch", movie: movie }}>
+    <Link to={{ pathname: `/watch`, movie: movie }}>
     <div className='listItem'
     style={{left:isHovered && index* 225 -50 + index *2.5}} onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}>
 

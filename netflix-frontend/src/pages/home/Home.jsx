@@ -62,6 +62,9 @@ const Home = ({type}) => {
     {lists.map((list) => (
         <List list={list} />
       ))}
+      {/* {lists.length > 0 && lists.map((list) => (
+        <List list={list} />
+      ))} */}
     </div>
   )
 }
