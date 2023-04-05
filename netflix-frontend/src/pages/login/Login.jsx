@@ -1,6 +1,22 @@
+import { useState } from "react";
 import "./login.scss";
-
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 export default function Login() {
+  const navigate=useNavigate()
+  const [email,setEmail]=useState("")
+  const[password,setPassword]=useState("")
+  const login=(e)=>{
+    e.preventDefault()
+    axios.post("http://localhost:8000/api/auth/login",{email,password})
+    .then(data=>{
+      console.log(data.data)
+      localStorage.setItem("user", data.data)
+      navigate("/")
+    }).catch(err=>{
+      console.log(err)
+    })
+  }
   return (
     <div className="login">
       <div className="top">
@@ -13,11 +29,11 @@ export default function Login() {
         </div>
       </div>
       <div className="container">
-        <form>
+        <form onSubmit={login}>
           <h1>Sign In</h1>
-          <input type="email" placeholder="Email or phone number" />
-          <input type="password" placeholder="Password" />
-          <button className="loginButton">Sign In</button>
+          <input type="email" placeholder="Email or phone number" onChange={e=>setEmail(e.target.value)} />
+          <input type="password" placeholder="Password" onChange={e=>setPassword(e.target.value)} />
+          <button type="submit" className="loginButton">Sign In</button>
           <span>
             New to Netflix? <b>Sign up now.</b>
           </span>

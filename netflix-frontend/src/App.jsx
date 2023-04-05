@@ -8,7 +8,7 @@ import {createBrowserRouter, createRoutesFromElements, Route, Link, RouterProvid
 
 
 const App = () => {
-    const user= true;
+    const user= localStorage.getItem("user")
     const router = createBrowserRouter(
         createRoutesFromElements(
             <Route path="/" elemment={<Root/>}>
