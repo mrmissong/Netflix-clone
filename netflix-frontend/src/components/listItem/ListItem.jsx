@@ -14,7 +14,7 @@ const ListItem = ({index,item}) => {
   useEffect(() => {
     const getMovie = async()=>{
       try{
-        const res= await axios.get("/movies/find/"+item,{
+        const res= await axios.get("http://localhost:8000/api/movies/find/"+item,{
           headers: {
             token:
             "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
@@ -33,10 +33,10 @@ const ListItem = ({index,item}) => {
     <div className='listItem'
     style={{left:isHovered && index* 225 -50 + index *2.5}} onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}>
 
-      <img src={movie.img} alt="" />
+      {movie && <img src={movie.img} alt="" />}
       {isHovered && (
       <>
-      <video src={movie.trailer} autoPlay={true} loop></video>
+      {movie &&<video src={movie.trailer} autoPlay={true} loop></video>}
       <div className="itemInfo">
         <div className='icons'>
         <IconButton>
@@ -53,14 +53,14 @@ const ListItem = ({index,item}) => {
         </IconButton>    
         </div>
         <div className="itemInfoTop">
-          <span>{movie.duration} </span>
-          <span className='limit'> +U/A{movie.limit} </span>
-          <span> {movie.year} </span>
+          {movie && <span>{movie.duration} </span>}
+          {movie && <span className='limit'> +U/A{movie.limit} </span>}
+          {movie && <span> {movie.year} </span>}
         </div>
-        <div className="description">
+        {movie && <div className="description">
           {movie.desc}
-        </div>
-        <div className="genre">{movie.genre}</div>
+        </div>}
+        {movie && <div className="genre">{movie.genre}</div>}
       </div> 
       </>
       
