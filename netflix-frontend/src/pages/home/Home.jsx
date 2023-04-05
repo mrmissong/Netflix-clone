@@ -34,28 +34,6 @@ const Home = ({type}) => {
   }, [type, genre]);
 
 
-  // useEffect(()=>{
-  //   const getRandomLists=()=>{
-  //     axios.get(`lists${type ? "?type=" + type : ""}${
-  //       genre ? "&genre=" + genre : ""
-  //     }`,
-  //     {
-  //       headers: {
-  //         token:
-  //         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDAzNDFmYmQ4MmNmODg0NDI2MjVmOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY3NDc0NDYyNSwiZXhwIjoxNjc1MjYzMDI1fQ.r06J6-u9qDN07S_rLBbIqL8pUdzTvUPiMv1_kGTeLCM"
-  //       }
-  //     }).then((res)=>{
-  //       console.log(res);
-  //       setLists(res.data);
-  //     }).catch(err=>{
-  //       console.log(err)
-  //     })
-  //   }
-    
-  //   getRandomLists();
-
-  // },[type, genre]);
-
   return (
     <div className='home'>
     <Navbar/>
@@ -63,9 +41,6 @@ const Home = ({type}) => {
     {lists.map((list) => (
         <List list={list} />
       ))}
-      {/* {lists.length > 0 && lists.map((list) => (
-        <List list={list} />
-      ))} */}
     </div>
   )
 }

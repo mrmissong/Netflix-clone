@@ -4,12 +4,18 @@ import SearchIcon from "@mui/icons-material/Search";
 import { IconButton } from "@mui/material";
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import {Link} from "react-router-dom"
+import {Link, Navigate,useNavigate} from "react-router-dom"
+
 const Navbar = () => {
+  const navigate=useNavigate()
   const [isScrolled, setIsScrolled]=useState(false)
   window.onscroll=()=>{
     setIsScrolled(window.pageYOffset === 0 ? false : true)
     return ()=> (window.onscroll === null)
+  }
+  const logout=()=>{
+    localStorage.removeItem("user")
+    navigate("/login")
   }
   return (
     <div className= {isScrolled ? "navbar scrolled" :"navbar"}>
@@ -42,7 +48,7 @@ const Navbar = () => {
             <ArrowDropDownIcon/>
             <div className="options">
               <span>Settings</span>
-              <span>Logout</span>
+              <span onClick={logout}>Logout</span>
             </div>
           </IconButton>
           </div> 
