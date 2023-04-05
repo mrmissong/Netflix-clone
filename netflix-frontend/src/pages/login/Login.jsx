@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./login.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -10,13 +10,14 @@ export default function Login() {
     e.preventDefault()
     axios.post("http://localhost:8000/api/auth/login",{email,password})
     .then(data=>{
-      console.log(data.data)
       localStorage.setItem("user", JSON.stringify(data.data));
-      navigate("/")
+      window.location.reload()
     }).catch(err=>{
       console.log(err)
     })
+    
   }
+  
   return (
     <div className="login">
       <div className="top">

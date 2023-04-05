@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import "./App.scss";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
@@ -9,18 +9,20 @@ import {createBrowserRouter, createRoutesFromElements, Route, Link, RouterProvid
 
 const App = () => {
     const user= localStorage.getItem("user")
+    console.log(user)
     const router = createBrowserRouter(
         createRoutesFromElements(
             <Route path="/" elemment={<Root/>}>
-                <Route index element={user ? <Home/> : <Navigate to="/register"/>}/>  
+                <Route index element={user ? <Home/> : <Navigate to="/login"/>}/>  
                 <Route path="/movies" element={user && <Home type="movies"/>}/>
                 <Route path="/series" element={user &&<Home type="series"/>}/>
                 <Route path="/watch" element={user &&<Watch/>}/>
-                <Route path='/register' element={!user ?<Register/> : <Navigate to="/"/>}/>
-                <Route path='/login' element={!user ? <Login/>: <Navigate to="/"/>}/>        
+                <Route path='/register' element={!user?<Register/> :<Navigate to="/"/> }/>
+                <Route path='/login' element={!user ? <Login/> : <Navigate to="/"/>}/>        
             </Route>
         )
     )
+    
   return (
     <RouterProvider router={router}/>
   )
