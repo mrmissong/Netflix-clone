@@ -13,7 +13,7 @@ const Home = ({type}) => {
     const getRandomLists = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8000/api/lists${type ? "?type=" + type : ""}${
+          `https://netflix-clone-backend-3de4.onrender.com/api/lists${type ? "?type=" + type : ""}${
             genre ? "&genre=" + genre : ""
           }`,
         

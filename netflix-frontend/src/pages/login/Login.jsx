@@ -7,7 +7,7 @@ export default function Login() {
   const[password,setPassword]=useState("")
   const login=(e)=>{
     e.preventDefault()
-    axios.post("http://localhost:8000/api/auth/login",{email,password})
+    axios.post("https://netflix-clone-backend-3de4.onrender.com/api/auth/login",{email,password})
     .then(data=>{
       localStorage.setItem("user", JSON.stringify(data.data));
       window.location.reload()

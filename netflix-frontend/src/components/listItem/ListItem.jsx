@@ -14,7 +14,7 @@ const ListItem = ({index,item}) => {
   useEffect(() => {
     const getMovie = async()=>{
       try{
-        const res= await axios.get("http://localhost:8000/api/movies/find/"+item,{
+        const res= await axios.get("https://netflix-clone-backend-3de4.onrender.com/api/movies/find/"+item,{
           headers: {
             token:
             "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
