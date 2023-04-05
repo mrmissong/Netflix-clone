@@ -23,7 +23,7 @@ const Featured = ({type}) => {
             console.log(content)
         }
         getRandomContent()
-    },[type,content])
+    },[type])
   return (
     <div className='featured'>
         {type && (
