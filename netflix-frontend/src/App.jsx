@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 import "./App.scss";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";

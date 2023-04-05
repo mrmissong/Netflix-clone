@@ -4,10 +4,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import { IconButton } from "@mui/material";
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import {Link, Navigate,useNavigate} from "react-router-dom"
+import {Link} from "react-router-dom"
 
 const Navbar = () => {
-  const navigate=useNavigate()
   const [isScrolled, setIsScrolled]=useState(false)
   window.onscroll=()=>{
     setIsScrolled(window.pageYOffset === 0 ? false : true)

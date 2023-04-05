@@ -1,6 +1,6 @@
 import React,{useState, useRef} from 'react'
 import "./register.scss"
-import { Link,useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 
 
 const Register = () => {
