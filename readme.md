@@ -12,7 +12,7 @@
 
 ## DEMO
 
-[Netflix clone demo]([https://missong-whatsapp-chat-clone.netlify.app/](https://missong-netflix-clone.netlify.app/login))
+[Netflix clone demo](https://missong-netflix-clone.netlify.app/login)
 
 Test credentials
 | Email | Password |
